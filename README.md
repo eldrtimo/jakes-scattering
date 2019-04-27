@@ -61,14 +61,14 @@ Still working on scaling and centering spectrum properly.
 
 
 ```python
-jakes_fading(
-    NN_sym =  512, # number of symbols
-    NN_sps = 1024, # number of samples per symbol
-    NN_pth =  256, # number of paths
-    FF_dop =    1, # maximum doppler shift (Hz)
-    FF_car =    0, # carrier frequency (Hz)
-    FF_sym =    4  # symbol rate (baud)
-)
+NN_sym =  512 # number of symbols
+NN_sps = 1024 # number of samples per symbol
+NN_pth =  256 # number of paths
+FF_dop =    1 # maximum doppler shift (Hz)
+FF_car =    0 # carrier frequency (Hz)
+FF_sym =    1  # symbol rate (baud)
+
+jakes_fading(NN_sym,NN_sps,NN_pth,FF_dop,FF_car,FF_sym)
 
 # Welch Spectrum
 nperseg = NN_sam/2 # frequency range [-NN_sps/2,NN_sps/2]
@@ -110,20 +110,10 @@ print("Number of frequencies: {}".format(ff_k.size))
 print("nperseg:               {}".format(nperseg))
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    NameError                                 Traceback (most recent call last)
-
-    ~/dev/jakes/jakes.py in <module>
-         25 axs.set_ylabel(r"power $|S_x(t)|^2$")
-         26 axs.plot(ff_k,Sx_k)
-    ---> 27 axs.axvline(FF_car + FF_dop,linestyle = "--",linewidth=1,color="blue")
-         28 axs.axvline(FF_car,label="$f_{c}$",linestyle = "--",linewidth=1,color="blue")
-         29 
-
-
-    NameError: name 'FF_car' is not defined
+    Welch periodogram properties:
+    frequency spacing:     0.00390625 Hz
+    Number of frequencies: 262144
+    nperseg:               262144.0
 
 
 
